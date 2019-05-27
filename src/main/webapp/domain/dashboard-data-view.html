@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Xenon Boostrap Admin Panel"/>
+    <meta name="author" content=""/>
+
+    <title>Hive Data View - Dashboard</title>
+
+    <link rel="stylesheet" href="http://fonts.useso.com/css?family=Arimo:400,700,400italic">
+    <link rel="stylesheet" href="assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/xenon-core.css">
+    <link rel="stylesheet" href="assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="assets/css/xenon-components.css">
+    <link rel="stylesheet" href="assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- local -->
+    <script type="text/javascript" src="assets/js/jquery-1.11.1.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="assets/js/html5shiv.min.js"></script>
+    <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- local -->
+    <script type="text/javascript" src="../js/common/common.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="../js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="../js/echarts.min.js"></script>
+</head>
+<body class="page-body">
+<div ng-app="indexApp" ng-controller="indexCtrl">
+
+    <div class="copyrights">Collect from <a href="#" title="Hive Data View">Hive Data View</a></div>
+    <div class="page-container">
+        <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+        <!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
+        <!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
+        <!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
+        <div class="sidebar-menu toggle-others fixed">
+
+            <div class="sidebar-menu-inner">
+
+                <header class="logo-env">
+
+                    <!-- logo -->
+                    <div class="logo">
+                        <a href="dashboard-1.html" class="logo-expanded">
+                            <img src="assets/images/logo@2x.png" width="80" alt=""/>
+                        </a>
+
+                        <a href="dashboard-1.html" class="logo-collapsed">
+                            <img src="assets/images/logo-collapsed@2x.png" width="40" alt=""/>
+                        </a>
+                    </div>
+
+                    <!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+                    <div class="mobile-menu-toggle visible-xs">
+                        <a href="#" data-toggle="user-info-menu">
+                            <i class="fa-bell-o"></i>
+                            <span class="badge badge-success">7</span>
+                        </a>
+
+                        <a href="#" data-toggle="mobile-menu">
+                            <i class="fa-bars"></i>
+                        </a>
+                    </div>
+
+                    <!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
+                    <div class="settings-icon">
+                        <a href="#" data-toggle="settings-pane" data-animate="true">
+                            <i class="linecons-cog"></i>
+                        </a>
+                    </div>
+
+                </header>
+
+                <ul id="main-menu" class="main-menu">
+                    <li class="active opened active">
+                        <a href="dashboard-data-claw.html">
+                            <i class="linecons-cog"></i>
+                            <span class="title">Hive数据</span>
+                        </a>
+                        <ul>
+                            <li class="active">
+                                <a href="dashboard-data-view.html">
+                                    <span class="title">数据展示</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="main-content">
+
+            <!-- User Info, Notifications and Menu Bar -->
+            <div ng-include="'dashboard-data-navbar.html'"></div>
+
+
+            <div id="myTabContent" class="tab-content" style="display: block;">
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <div class="xe-widget xe-counter">
+                            <div class="xe-icon">
+                                <i class="linecons-cloud"></i>
+                            </div>
+                            <div class="xe-label">
+                                <strong class="num">{{wNumberCount}}</strong>
+                                <span>总热度数</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="xe-widget xe-counter xe-counter-blue">
+                            <div class="xe-icon">
+                                <i class="linecons-user"></i>
+                            </div>
+                            <div class="xe-label">
+                                <strong class="num">{{onlineCount}}</strong>
+                                <span>总观看人数</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="xe-widget xe-counter xe-counter-info">
+                            <div class="xe-icon">
+                                <i class="linecons-camera"></i>
+                            </div>
+                            <div class="xe-label">
+                                <strong class="num">{{followersCount}}</strong>
+                                <span>总关注数</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="xe-widget xe-counter xe-counter-red">
+                            <div class="xe-icon">
+                                <i class="linecons-lightbulb"></i>
+                            </div>
+                            <div class="xe-label">
+                                <strong class="num">{{userNameCount}}</strong>
+                                <span>总主播数</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p style="margin-top: 15px;">环形图</p>
+                        <div id="percentChart" style="width: 100%; height:298px;"></div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <!--折线图-->
+                        <p style="margin-top: 15px;">折线图</p>
+                        <div id="chart1" style="width: 100%; height:298px;"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p style="margin-top: 15px;">折线图()</p>
+                        <div id="chart3" style="width: 100%; height:298px;"></div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <p style="margin-top: 15px;">柱状图</p>
+                        <div id="chart4" style="width: 100%; height:298px;"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p style="margin-top: 15px;">柱状图</p>
+                        <div id="chart21" style="width: 100%; height:298px;"></div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <p style="margin-top: 15px;">柱状图</p>
+                        <div id="chart22" style="width: 100%; height:298px;"></div>
+                    </div>
+                </div>
+
+
+                <!--列表-->
+                <p style="margin-top: 5px;">列表</p>
+                <div id="dataTable" style="display: block; background-color: #ffffff">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <td>主键</td>
+                                <td>房间号</td>
+                                <td>主播名称</td>
+                                <td>类型</td>
+                                <td>观看人数</td>
+                                <td>热度</td>
+                                <td>影响因素</td>
+                                <td>链接</td>
+                                <td>年</td>
+                                <td>月</td>
+                                <td>日</td>
+                                <td>时</td>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr ng-repeat="item in dataList5">
+                                <td>{{item.id}}</td>
+                                <td>{{item.roomNumber}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.kind}}</td>
+                                <td>{{item.online}}</td>
+                                <td>{{item.wNumber}}</td>
+                                <td>{{item.coefficient}}</td>
+                                <td>{{item.link}}</td>
+                                <td>{{item.year}}</td>
+                                <td>{{item.month}}</td>
+                                <td>{{item.day}}</td>
+                                <td>{{item.hour}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Main Footer -->
+            <!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
+            <!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
+            <!-- Or class "fixed" to  always fix the footer to the end of page -->
+            <div ng-include="'dashboard-data-footer.html'"></div>
+        </div>
+
+    </div>
+
+
+    <div class="page-loading-overlay">
+        <div class="loader-2"></div>
+    </div>
+</div>
+
+<!-- Bottom Scripts -->
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/TweenMax.min.js"></script>
+<script src="assets/js/resizeable.js"></script>
+<script src="assets/js/joinable.js"></script>
+<script src="assets/js/xenon-api.js"></script>
+<script src="assets/js/xenon-toggles.js"></script>
+
+
+<!-- Imported scripts on this page -->
+<script src="assets/js/xenon-widgets.js"></script>
+<script src="assets/js/devexpress-web-14.1/js/globalize.min.js"></script>
+<script src="assets/js/devexpress-web-14.1/js/dx.chartjs.js"></script>
+<script src="assets/js/toastr/toastr.min.js"></script>
+
+
+<!-- JavaScripts initializations and stuff -->
+<script src="assets/js/xenon-custom.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        console.log("加载完成");
+    });
+
+    var app = angular.module("indexApp", []);
+    app.controller("indexCtrl", function ($scope) {
+
+        $scope.loginInfo = {};
+
+        // 2
+        var xDataArray = [];
+        var yDataKPre = [];
+        var yDataDkPre = [];
+        var yDataLeakage = [];
+        $scope.prepareEchartsData = function () {
+            $scope.xData = '';
+
+            angular.forEach($scope.dataList5, function (value) {
+                xDataArray.push(value.operTime.split(" ")[1]);
+                yDataKPre.push(value.kpre);
+                yDataDkPre.push(value.dkPre);
+                yDataLeakage.push(value.leakage);
+            });
+
+            console.log('data format done');
+        };
+
+        // 1
+        $scope.getCount = function () {
+            var url = getRequestPath() + '/douyu/count';
+            console.log(url);
+
+            var protocolType = '1';
+
+            var params = {
+                'loginName': $('#inputLoginName').val(),
+                'password': $('#inputPassword').val(),
+                'protocolType': protocolType
+            };
+            console.log(params);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                data: params,
+                dataType: 'json',
+                error: function (data) {
+                    alert(data.resultMesg);
+                },
+                success: function (data) {
+                    if (data.resultCode == 'success') {
+                        $scope.wNumberCount = data.wNumberCount;
+                        $scope.onlineCount = data.onlineCount;
+                        $scope.followersCount = data.followersCount;
+                        $scope.userNameCount = data.userNameCount;
+                    }
+                }
+            });
+        };
+
+        $scope.getDataList1 = function () {
+            var url = getRequestPath() + '/douyu/list1';
+            console.log(url);
+
+            var protocolType = '1';
+
+            var params = {
+                'loginName': $('#inputLoginName').val(),
+                'password': $('#inputPassword').val(),
+                'protocolType': protocolType
+            };
+            console.log(params);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                data: params,
+                dataType: 'json',
+                error: function (data) {
+                    alert(data.resultMesg);
+                },
+                success: function (data) {
+                    if (data.resultCode == 'success') {
+                        $scope.dataList1 = data.dataList1;
+                    }
+                }
+            });
+        };
+
+        $scope.getDataList2 = function () {
+            var url = getRequestPath() + '/douyu/list2';
+            console.log(url);
+
+            var protocolType = '1';
+
+            var params = {
+                'loginName': $('#inputLoginName').val(),
+                'password': $('#inputPassword').val(),
+                'protocolType': protocolType
+            };
+            console.log(params);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                data: params,
+                dataType: 'json',
+                error: function (data) {
+                    alert(data.resultMesg);
+                },
+                success: function (data) {
+                    $scope.dataList2 = data.dataList2;
+                    $scope.dataList2_1 = data.dataList2_1;
+                    $scope.dataList2_2 = data.dataList2_2;
+                    $scope.dataList2_3 = data.dataList2_3;
+                }
+            });
+        };
+
+        $scope.getDataList3 = function () {
+            var url = getRequestPath() + '/douyu/list3';
+            console.log(url);
+
+            var protocolType = '1';
+
+            var params = {
+                'loginName': $('#inputLoginName').val(),
+                'password': $('#inputPassword').val(),
+                'protocolType': protocolType
+            };
+            console.log(params);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                data: params,
+                dataType: 'json',
+                error: function (data) {
+                    alert(data.resultMesg);
+                },
+                success: function (data) {
+                    $scope.dataList3_1 = data.dataList3_1;
+                    $scope.dataList3_2 = data.dataList3_2;
+                }
+            });
+        };
+
+        $scope.getDataList4 = function () {
+            var url = getRequestPath() + '/douyu/list4';
+            console.log(url);
+
+            var protocolType = '1';
+
+            var params = {
+                'loginName': $('#inputLoginName').val(),
+                'password': $('#inputPassword').val(),
+                'protocolType': protocolType
+            };
+            console.log(params);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                data: params,
+                dataType: 'json',
+                error: function (data) {
+                    alert(data.resultMesg);
+                },
+                success: function (data) {
+                    if (data.resultCode == 'success') {
+                        $scope.dataList4 = data.dataList4;
+                    }
+                }
+            });
+        };
+
+        $scope.getDataList5 = function () {
+            var url = getRequestPath() + '/douyu/list5';
+            console.log(url);
+
+            var protocolType = '1';
+
+            var params = {
+                'loginName': $('#inputLoginName').val(),
+                'password': $('#inputPassword').val(),
+                'protocolType': protocolType
+            };
+            console.log(params);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                data: params,
+                dataType: 'json',
+                error: function (data) {
+                    alert(data.resultMesg);
+                },
+                success: function (data) {
+                    if (data.resultCode == 'success') {
+                        $scope.dataList5 = data.dataList5;
+                    }
+                }
+            });
+        };
+
+        // 2
+        $scope.buildDataList1 = function () {
+            app.title = '统计热度前三和后三直播堆叠条形图';
+            var chart1 = echarts.init(document.getElementById('chart1'));
+
+            option = {
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: [
+                        $scope.dataList1[0].kind,
+                        $scope.dataList1[1].kind,
+                        $scope.dataList1[2].kind,
+                        $scope.dataList1[3].kind,
+                        $scope.dataList1[4].kind,
+                        $scope.dataList1[5].kind
+                    ]
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [
+                        $scope.dataList1[0].online,
+                        $scope.dataList1[1].online,
+                        $scope.dataList1[2].online,
+                        $scope.dataList1[3].online,
+                        $scope.dataList1[4].online,
+                        $scope.dataList1[5].online
+                    ],
+                    type: 'line',
+                    areaStyle: {}
+                }]
+            };
+
+            chart1.setOption(option);
+        };
+
+        $scope.buildDataList21 = function () {
+            var chart21 = echarts.init(document.getElementById('chart21'));
+
+            var option = {
+                title: {
+                    text: '在线人数（按直播类型）',
+                    left: 10
+                },
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: false
+                        },
+                        saveAsImage: {
+                            pixelRatio: 2
+                        }
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    bottom: 90
+                },
+                dataZoom: [{
+                    type: 'inside'
+                }, {
+                    type: 'slider'
+                }],
+                xAxis: {
+                    data: $scope.dataList2_1,
+                    silent: false,
+                    splitLine: {
+                        show: false
+                    },
+                    splitArea: {
+                        show: false
+                    }
+                },
+                yAxis: {
+                    splitArea: {
+                        show: false
+                    }
+                },
+                series: [{
+                    type: 'bar',
+                    data: $scope.dataList2_2,
+                    large: true
+                }]
+            };
+
+            chart21.setOption(option);
+        };
+
+        $scope.buildDataList22 = function () {
+            var chart22 = echarts.init(document.getElementById('chart22'));
+
+            var option = {
+                title: {
+                    text: '热度（按直播类型）',
+                    left: 10
+                },
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: false
+                        },
+                        saveAsImage: {
+                            pixelRatio: 2
+                        }
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    bottom: 90
+                },
+                dataZoom: [{
+                    type: 'inside'
+                }, {
+                    type: 'slider'
+                }],
+                xAxis: {
+                    data: $scope.dataList2_1,
+                    silent: false,
+                    splitLine: {
+                        show: false
+                    },
+                    splitArea: {
+                        show: false
+                    }
+                },
+                yAxis: {
+                    splitArea: {
+                        show: false
+                    }
+                },
+                series: [{
+                    type: 'bar',
+                    data: $scope.dataList2_3,
+                    large: true
+                }]
+            };
+
+            chart22.setOption(option);
+        };
+
+        $scope.buildDataList3 = function () {
+            app.title = '数据总量柱状图';
+            var chart3 = echarts.init(document.getElementById('chart3'));
+            var option = {
+                color: ['#3398DB'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: $scope.dataList3_2,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [{
+                    type: 'value'
+                }],
+                series: [
+                    {
+                        name: '直播类型统计',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: $scope.dataList3_1
+                    }
+                ]
+            };
+            chart3.setOption(option);
+        };
+
+        $scope.buildDataList4 = function () {
+            app.title = '数据总量柱状图';
+            var chart4 = echarts.init(document.getElementById('chart4'));
+            option = {
+                color: ['#3398DB'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: [
+                            $scope.dataList4[0].kind,
+                            $scope.dataList4[1].kind,
+                            $scope.dataList4[2].kind,
+                            $scope.dataList4[3].kind,
+                            $scope.dataList4[4].kind,
+                            $scope.dataList4[5].kind,
+                            $scope.dataList4[6].kind,
+                            $scope.dataList4[7].kind,
+                            $scope.dataList4[8].kind,
+                            $scope.dataList4[9].kind
+                        ],
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Top 10 类型',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: [
+                            $scope.dataList4[0].tvTotal,
+                            $scope.dataList4[1].tvTotal,
+                            $scope.dataList4[2].tvTotal,
+                            $scope.dataList4[3].tvTotal,
+                            $scope.dataList4[4].tvTotal,
+                            $scope.dataList4[5].tvTotal,
+                            $scope.dataList4[6].tvTotal,
+                            $scope.dataList4[7].tvTotal,
+                            $scope.dataList4[8].tvTotal,
+                            $scope.dataList4[9].tvTotal
+                        ]
+                    }
+                ]
+            };
+            chart4.setOption(option);
+        };
+
+        $scope.buildPercentChart = function () {
+            var percentChart = echarts.init(document.getElementById('percentChart'));
+
+            app.title = '数据总量环形图';
+
+            option = {
+                backgroundColor: '#ffffff',
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    data: [
+                        $scope.dataList5[0].userName,
+                        $scope.dataList5[1].userName,
+                        $scope.dataList5[2].userName,
+                        $scope.dataList5[3].userName,
+                        $scope.dataList5[4].userName,
+                        $scope.dataList5[5].userName,
+                        $scope.dataList5[6].userName,
+                        $scope.dataList5[7].userName,
+                        $scope.dataList5[8].userName,
+                        $scope.dataList5[9].userName
+                    ]
+                },
+                series: [
+                    {
+                        name: '主播名称',
+                        type: 'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '30',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data: [
+                            {value: $scope.dataList5[0].online, name: $scope.dataList5[0].userName},
+                            {value: $scope.dataList5[1].online, name: $scope.dataList5[1].userName},
+                            {value: $scope.dataList5[2].online, name: $scope.dataList5[2].userName},
+                            {value: $scope.dataList5[3].online, name: $scope.dataList5[3].userName},
+                            {value: $scope.dataList5[4].online, name: $scope.dataList5[4].userName},
+                            {value: $scope.dataList5[5].online, name: $scope.dataList5[5].userName},
+                            {value: $scope.dataList5[6].online, name: $scope.dataList5[6].userName},
+                            {value: $scope.dataList5[7].online, name: $scope.dataList5[7].userName},
+                            {value: $scope.dataList5[8].online, name: $scope.dataList5[8].userName},
+                            {value: $scope.dataList5[9].online, name: $scope.dataList5[9].userName}
+                        ]
+                    }
+                ]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            percentChart.setOption(option);
+        };
+
+        // 01
+        $scope.getLoginInfo = function () {
+            var url = getRequestPath() + '/sign/getLoginInfo';
+
+            console.log(url);
+
+            var params = {
+                'curTime': '1'
+            };
+
+            console.log(params);
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: false,
+                data: params,
+                dataType: 'json',
+                error: function (data) {
+                    alert(data.resultMesg);
+                },
+                success: function (data) {
+                    if (data.resultCode == 'success') {
+                        $scope.loginInfo = data.loginInfo;
+                        $scope.refreshPage();
+
+                    } else {
+                        window.location.href = getRootPath() + '/dashboard-data-login.html';
+                    }
+                }
+            });
+        };
+
+        // 0
+        $scope.refreshPage = function () {
+
+            if (1 == 1) {
+                // $scope.prepareEchartsData();
+                //
+                // // 折线图
+                //
+                // $scope.buildDkPreChart();
+                // $scope.buildLeakageChart();
+            }
+
+            console.log('refresh page data view');
+
+            // 获取总素
+            $scope.getCount();
+
+            // 获取提案列表
+            $scope.getDataList1();
+            if ($scope.dataList1 != null) {
+                $scope.buildDataList1();
+            }
+
+            $scope.getDataList2();
+            if ($scope.dataList2 != null) {
+                // 折线图
+                $scope.buildDataList21();
+                $scope.buildDataList22();
+            }
+
+            $scope.getDataList3();
+            if ($scope.dataList3_1 != null) {
+                $scope.buildDataList3();
+            }
+
+            $scope.getDataList4();
+            if ($scope.dataList4 != null) {
+                // 折线图
+                $scope.buildDataList4();
+            }
+
+            $scope.getDataList5();
+            if ($scope.dataList5 != null) {
+                // 饼图
+                $scope.buildPercentChart();
+            }
+
+        };
+
+        //
+        $scope.getLoginInfo();
+
+    });
+</script>
+<script src="js/navbar.js"></script>
+</body>
+</html>

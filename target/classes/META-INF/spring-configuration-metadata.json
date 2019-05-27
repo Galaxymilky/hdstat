@@ -1,0 +1,103 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "name": "hive",
+      "type": "com.hdstat.config.prop.HiveConfigProp"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "name": "hive.driver-class-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": 0,
+      "name": "hive.initial-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": 0,
+      "name": "hive.max-active",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": 0,
+      "name": "hive.max-pool-prepared-statement-per-connection-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": 0,
+      "name": "hive.max-wait",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": 0,
+      "name": "hive.min-evictable-idle-time-millis",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": 0,
+      "name": "hive.min-idle",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "name": "hive.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": false,
+      "name": "hive.pool-prepared-statements",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": false,
+      "name": "hive.test-on-borrow",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": false,
+      "name": "hive.test-on-return",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": false,
+      "name": "hive.test-while-idle",
+      "type": "java.lang.Boolean"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "defaultValue": 0,
+      "name": "hive.time-between-eviction-runs-millis",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "name": "hive.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "name": "hive.user",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.hdstat.config.prop.HiveConfigProp",
+      "name": "hive.validation-query",
+      "type": "java.lang.String"
+    }
+  ]
+}

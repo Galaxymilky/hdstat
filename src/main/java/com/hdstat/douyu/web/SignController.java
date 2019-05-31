@@ -95,4 +95,22 @@ public class SignController extends BaseRest {
         return JsonUtils.transObject2Json(resMap);
     }
 
+    @ApiOperation(value = "退出系统", notes = "退出系统")
+    @PostMapping(value = "/logout")
+    public DataJson logout(HttpServletRequest request, HttpServletResponse response, String loginName) {
+        AppUser appUser = new AppUser();
+        appUser.setLoginName(loginName);
+
+        HttpSession httpSession = request.getSession();
+
+        Object loginUser = httpSession.getAttribute(LOGIN_INFO);
+        if (loginUser == null) {
+            System.out.println("User {} already logout!" + loginName);
+        }
+
+        httpSession.removeAttribute(LOGIN_INFO);
+
+        return new DataJson(SUCCESS, SUCCESS);
+    }
+
 }

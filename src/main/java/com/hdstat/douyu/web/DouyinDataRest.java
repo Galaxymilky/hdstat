@@ -24,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/douyin")
 public class DouyinDataRest extends BaseRest {
 
-    private static final String tableName = "douyin_7";
+    private static final String tableName = "t_douyin_8";
 
     private static final String tableName_1 = "douyin_7";
     private static final String tableName_2 = "t_douyin_8";
@@ -116,7 +116,7 @@ public class DouyinDataRest extends BaseRest {
             StringBuffer sql = new StringBuffer();
             sql.append("select * from (");
             sql.append("select count(*) totalCount, province from ").append(tableName).append(" group by province");
-            sql.append(") order by totalCount desc");
+            sql.append(") t order by t.totalCount desc");
             System.out.println(sql.toString());
 
             ResultSet res = statement.executeQuery(sql.toString());

@@ -36,7 +36,7 @@
             <div class="title-box">
                 <h6>抖音用户最近记录</h6>
             </div>
-            <div class="chart-box">
+            <div class="chart-box" style="overflow-x: auto; overflow-y: auto; height: 200px; ">
                 <table class="table3">
                     <thead>
                     <tr>
@@ -46,7 +46,7 @@
                         <th>时间</th>
                     </tr>
                     </thead>
-                    <tbody id="tList">
+                    <tbody id="tList" >
 
                     <tr ng-repeat="json in dataList6">
                         <td>{{json.name}}</td>

@@ -40,18 +40,18 @@
                 <table class="table3">
                     <thead>
                     <tr>
-                        <th>姓名</th>
                         <th>类型</th>
                         <th>省份</th>
-                        <th>时间</th>
+                        <th>数量</th>
+                        <th>排名</th>
                     </tr>
                     </thead>
                     <tbody id="tList" >
 
                     <tr ng-repeat="json in dataList6">
-                        <td>{{json.name}}</td>
-                        <td>{{json.type}}</td>
                         <td>{{json.province}}</td>
+                        <td>{{json.type}}</td>
+                        <td>{{json.name}}</td>
                         <td>{{json.time}}</td>
                     </tr>
 

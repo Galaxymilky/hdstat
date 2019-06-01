@@ -14,7 +14,8 @@ hive --service metastore &
 
 hive --service hiveserver2 &
 
-3.可以通过命令netstat -ntulp |grep 10000 
+3.可以通过命令
+netstat -ntulp |grep 10000
 可以看到结果 
 tcp 0 0 0.0.0.0:10000 0.0.0.0:* LISTEN 27799/java
 Mac可以通过命令lsof -i:10000 查看结果
@@ -33,20 +34,31 @@ http://localhost:8080/hive/table/create
 
 ### hive db cmd2
 
-hive> load data inpath "/Users/dynamicniu/IdeaProjects/hdstat/data/DouYu3.json" into table douyu_json;
+hive> 
+
+load data inpath "/Users/dynamicniu/IdeaProjects/hdstat/data/DouYu3.json" into table douyu_json;
+
 FAILED: SemanticException Line 1:17 Invalid path '"/Users/dynamicniu/IdeaProjects/hdstat/data/DouYu3.json"': No files matching path hdfs://localhost:9000/Users/dynamicniu/IdeaProjects/hdstat/data/DouYu3.json
+
+
 hive> 
 
 异常提示需要先将本机文件提交到Hadoop路径下
-hdfs dfs -put /Users/dynamicniu/IdeaProjects/hdstat/data/d8.json /user/input/
+hdfs dfs -put /Users/dynamicniu/IdeaProjects/hdstat/data/d3.json /user/input/
+
+
+hive> 
 
 新建Json表
 create table IF NOT EXISTS json_douyin_1 (json string);
 
 CREATE TABLE IF NOT EXISTS json_d8 (json string) STORED AS textfile;
 
-将Json数据导入到Json表中
-hive> load data inpath "/user/input/d8.json" into table json_d8;
+create table t_douyin_3 (id int, name string, age int, province string, sex string, type string, time string);
+
+将Json数据导入到Json表中 
+load data inpath "/user/input/d3.json" into table t_douyin_3;
+
 Loading data to table default.douyu_json
 [Warning] could not update stats.
 OK
@@ -55,6 +67,8 @@ hive>
 
 
 ###
+
+create table douyin_7 as select json_tuple(json,"id","name","age","province","sex","type","time") as (id,name,age,province,sex,type,time) from d1_json;
 
 create table t_douyin_8 as select json_tuple(json,"id","name","age","province","sex","type","time") as (id,name,age,province,sex,type,time) from json_d8;
 
@@ -158,3 +172,16 @@ Stage-Stage-1: Map: 1  Reduce: 1   HDFS Read: 7670 HDFS Write: 18 SUCCESS
 Total MapReduce CPU Time Spent: 0 msec
 OK
 
+
+
+
+
+
+
+
+
+
+
+
+ERROR : Ended Job = job_1558903213487_0007 with errors
+Error: Error while processing statement: FAILED: Execution Error, return code 2 from org.apache.hadoop.hive.ql.exec.mr.MapRedTask (state=08S01,code=2)

@@ -443,12 +443,17 @@ public class DouyinDataRest extends BaseRest {
         if (list == null) {
             list = new ArrayList<>();
             Statement statement = druidDataSource.getConnection().createStatement();
-            StringBuffer sql = new StringBuffer();
-            sql.append("select t.* from ");
-            sql.append("(select name, type, province, time from ").append(tableName).append(" order by time desc) t limit 10");
-            System.out.println(sql.toString());
+            StringBuffer buffer = new StringBuffer();
+            buffer.append("select t.* from ");
+            buffer.append("(select name, type, province, time from ").append(tableName).append(" order by time desc) t limit 10");
+            System.out.println(buffer);
 
-            ResultSet res = statement.executeQuery(sql.toString());
+            String sql = "select a.* from (\n" +
+                    "     select total, type, province, row_number() over (partition by province order by total desc) rank\n" +
+                    "     from v_douyin_type_province order by total desc\n" +
+                    "     ) a where a.rank <= 1";
+
+            ResultSet res = statement.executeQuery(sql);
             while (res.next()) {
                 DouyinBaseListJson json = new DouyinBaseListJson();
                 json.setName(res.getString(1));

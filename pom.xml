@@ -18,7 +18,7 @@
         <dom4j.version>1.6.1</dom4j.version>
         <httpclient.version>4.5.2</httpclient.version>
         <protostuff.version>1.0.8</protostuff.version>
-        <springboot.version>2.1.3.RELEASE</springboot.version>
+        <springboot.version>2.5.12</springboot.version>
     </properties>
 
     <parent>

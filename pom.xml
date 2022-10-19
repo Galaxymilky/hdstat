@@ -12,7 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <logback.version>1.1.8</logback.version>
-        <jackson.version>2.9.5</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
         <slf4j.version>1.7.21</slf4j.version>
         <junit.version>4.12</junit.version>
         <dom4j.version>1.6.1</dom4j.version>
